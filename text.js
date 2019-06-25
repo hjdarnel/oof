@@ -15,26 +15,38 @@ const createImage = (text = 'yeet', res) => {
     const textBuffer = text2png(text, opts);
 
     gm(textBuffer).size((err, value) => {
-        if (err || !value) return;
+        if (err || !value) {
+            res.writeHead(404);
+            return res.end("File not found.");
+        }
 
         gm('./assets/lines.png').resize(value.width).write('./assets/resized_lines.png', (err) => {
-            if (err) return;
+            if (err) {
+                res.writeHead(404);
+                return res.end("File not found.");
+            }
 
             gm(textBuffer).append('./assets/resized_lines.png').toBuffer(function (err, val) {
-                if (err || !val) return;
+                if (err || !val) {
+                    res.writeHead(404);
+                    return res.end("File not found.");
+                }
 
                 gm(val).command('convert').in('-virtual-pixel',  'none', '-distort', 'Arc', arcDegrees).write('./assets/out.png', (err) => {
-                    if (err) return;
+                    if (err) {
+                        res.writeHead(404);
+                        return res.end("File not found.");
+                    }
 
-                    gm('./assets/out.png').rotate('none', rotationDegrees).write('./assets/out.png', (err) => {
+                    gm('./assets/out.png').rotate('none', rotationDegrees).toBuffer((err, value) => {
                         if (!err) console.log('Written composite image.');
-                        res.end('hello');
+                        res.setHeader('Content-Type', 'image/png');
+                        res.end(value);
                     });
                 });
             });
         });
     });
-    res.end('hello')
 }
 
-export default createImage;
+module.exports = createImage;

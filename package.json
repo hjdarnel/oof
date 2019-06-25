@@ -4,15 +4,17 @@
   "description": "",
   "main": "text.js",
   "scripts": {
-    "start": "node text.js"
+    "start": "micro ./index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "gm": "1.23.1",
-    "imagemagick": "0.1.3",
-    "micro": "9.3.5-canary.1",
+    "micro": "9.3.4",
     "text2png": "2.1.0"
+  },
+  "devDependencies": {
+    "micro-dev": "3.0.0"
   }
 }
