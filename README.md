@@ -8,3 +8,12 @@ body: {
 }
 ```
 ![](https://i.imgur.com/ySC80vT.png)
+
+## dev
+
+```bash
+brew install imagemagick
+brew install graphicsmagick
+npm i
+npm start
+```
