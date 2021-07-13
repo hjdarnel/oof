@@ -12,7 +12,7 @@
   "dependencies": {
     "gm": "1.23.1",
     "micro": "9.3.4",
-    "text2png": "2.1.0"
+    "text2png": "2.3.0"
   },
   "devDependencies": {
     "micro-dev": "3.0.0"
